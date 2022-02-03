@@ -1,8 +1,8 @@
 {
   "name": "hippocommandus-cli",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "hippo can remember & recall your CLI commands for you.",
-  "main": "index.js",
+  "main": "bin/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/hippocommandus/cli/issues"
   },
-  "homepage": "https://github.com/hippocommandus/cli#readme"
+  "homepage": "https://hippocommandus.xyz/",
+  "bin": {
+    "hello": "./bin/index.js"
+  }
 }
