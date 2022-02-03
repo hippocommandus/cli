@@ -18,5 +18,8 @@
   "homepage": "https://hippocommandus.xyz/",
   "bin": {
     "hello": "./bin/index.js"
+  },
+  "dependencies": {
+    "yargs": "^17.3.1"
   }
 }
