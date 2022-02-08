@@ -20,6 +20,7 @@
     "hippo": "./bin/index.js"
   },
   "dependencies": {
+    "mixpanel": "^0.14.0",
     "yargs": "^17.3.1"
   }
 }
