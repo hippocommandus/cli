@@ -70,7 +70,7 @@ if (options.hasOwnProperty('recall')) {
         
         data.commands.forEach(element => {
             if (element.tag.includes(options.tag)) {
-                console.log(`${chalk.green(element.command)}`);
+                console.log(`${chalk.cyan(element.command)}`);
             }
         });
     }
@@ -85,7 +85,7 @@ if (options.hasOwnProperty('recall')) {
         
         data.commands.forEach(element => {
             if (element.command.match(options.search)) {
-                console.log(`${chalk.green(element.command)}`);
+                console.log(`${chalk.cyan(element.command)}`);
             }
         });
     }
