@@ -7,9 +7,11 @@ const yargs = require("yargs");
 const options = yargs
     .usage("Usage: --hello")
     .usage("Usage: --recall --tag=laravel")
+    .usage("Usage: --recall --search=artisan")
     .option("h", { alias: "hello", describe: "Say hello", type: "string" })
     .option("r", { alias: "recall", describe: "Recall your command", type: "string" })
     .option("t", { alias: "tag", describe: "Tag filter", type: "string" })
+    .option("s", { alias: "search", describe: "Search filter", type: "string" })
     .argv;
 
 /**
@@ -32,6 +34,16 @@ const computerName = os.hostname()
 
 const data = require('./commands.js');
 
+/**
+ * 
+ */
+const chalk = require("chalk");
+const boxen = require("boxen");
+
+/**
+ * 
+ */
+
 mixpanel.track('hippo', {
     distinct_id: computerName,
     option: '--options',
@@ -48,24 +60,33 @@ if (options.hasOwnProperty('hello')) {
 }
 
 if (options.hasOwnProperty('recall')) {
-    
-    mixpanel.track('hippo', {
-        distinct_id: computerName,
-        option: '--recall',
-    });
-
-    console.log("honk! i'm recalling...");
-
     if (options.hasOwnProperty('tag')) {
-        if (options.tag === 'laravel') {
-            
-            console.log("Getting Laravel's");
-            
-            data.commands.forEach(element => {
-                if (element.tag.includes(options.tag)) {
-                    console.log(element.command)
-                }
-            });
-        }
+
+        mixpanel.track('hippo', {
+            distinct_id: computerName,
+            option: '--recall',
+            tag: options.tag
+        });
+        
+        data.commands.forEach(element => {
+            if (element.tag.includes(options.tag)) {
+                console.log(`${chalk.green(element.command)}`);
+            }
+        });
+    }
+
+    if (options.hasOwnProperty('search')) {
+
+        mixpanel.track('hippo', {
+            distinct_id: computerName,
+            option: '--recall',
+            search: options.search
+        });
+        
+        data.commands.forEach(element => {
+            if (element.command.match(options.search)) {
+                console.log(`${chalk.green(element.command)}`);
+            }
+        });
     }
 } 
