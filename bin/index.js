@@ -5,9 +5,11 @@
  */
 const yargs = require("yargs");
 const options = yargs
-    .usage("Usage: -h")
+    .usage("Usage: --hello")
+    .usage("Usage: --recall --tag=laravel")
     .option("h", { alias: "hello", describe: "Say hello", type: "string" })
     .option("r", { alias: "recall", describe: "Recall your command", type: "string" })
+    .option("t", { alias: "tag", describe: "Tag filter", type: "string" })
     .argv;
 
 /**
