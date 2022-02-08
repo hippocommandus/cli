@@ -1,6 +1,6 @@
 {
   "name": "hippocommandus-cli",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "hippo can remember & recall your CLI commands for you.",
   "main": "bin/index.js",
   "scripts": {
