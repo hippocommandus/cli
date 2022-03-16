@@ -1,3 +1,3 @@
 # README
 
-1. [Deployment environment](https://github.com/hippocommandus/cli/wiki/Deployment-environment)
+Please refer to the wiki https://github.com/hippocommandus/cli/wiki
