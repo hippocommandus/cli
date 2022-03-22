@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+require('dotenv').config()
 
 /**
  * 
@@ -32,61 +33,65 @@ const computerName = os.hostname()
  * 
  */
 
-const data = require('./commands.js');
+const axios = require("axios");
+const url = process.env.WEB_API_URL;
+axios.get(url, { headers: { Accept: "application/json" } })
+    .then(res => {
+        const data = res.data;
 
-/**
- * 
- */
-const chalk = require("chalk");
-const boxen = require("boxen");
+        /**
+        * 
+        */
+        const chalk = require("chalk");
+        const boxen = require("boxen");
 
-/**
- * 
- */
-
-mixpanel.track('hippo', {
-    distinct_id: computerName,
-    option: '--options',
-    details: options
-});
-
-if (options.hasOwnProperty('hello')) {
-    mixpanel.track('hippo', {
-        distinct_id: computerName,
-        option: '--hello',
-    });
-
-    console.log('hippo says "honk!"');
-}
-
-if (options.hasOwnProperty('recall')) {
-    if (options.hasOwnProperty('tag')) {
-
+        /**
+         * 
+         */
         mixpanel.track('hippo', {
             distinct_id: computerName,
-            option: '--recall',
-            tag: options.tag
+            option: '--options',
+            details: options
         });
-        
-        data.commands.forEach(element => {
-            if (element.tag.includes(options.tag)) {
-                console.log(`${chalk.cyan(element.command)}`);
-            }
-        });
-    }
 
-    if (options.hasOwnProperty('search')) {
+        if (options.hasOwnProperty('hello')) {
+            mixpanel.track('hippo', {
+                distinct_id: computerName,
+                option: '--hello',
+            });
 
-        mixpanel.track('hippo', {
-            distinct_id: computerName,
-            option: '--recall',
-            search: options.search
-        });
-        
-        data.commands.forEach(element => {
-            if (element.command.match(options.search)) {
-                console.log(`${chalk.cyan(element.command)}`);
+            console.log('hippo says "honk!"');
+        }
+
+        if (options.hasOwnProperty('recall')) {
+            if (options.hasOwnProperty('tag')) {
+
+                mixpanel.track('hippo', {
+                    distinct_id: computerName,
+                    option: '--recall',
+                    tag: options.tag
+                });
+
+                data.forEach(element => {
+                    if (element.tag.includes(options.tag)) {
+                        console.log(`${chalk.cyan(element.command)}`);
+                    }
+                });
             }
-        });
-    }
-} 
+
+            if (options.hasOwnProperty('search')) {
+
+                mixpanel.track('hippo', {
+                    distinct_id: computerName,
+                    option: '--recall',
+                    search: options.search
+                });
+
+                data.forEach(element => {
+                    if (element.command.match(options.search)) {
+                        console.log(`${chalk.cyan(element.command)}`);
+                    }
+                });
+            }
+        }
+    }); 

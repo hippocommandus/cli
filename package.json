@@ -20,8 +20,10 @@
     "hippo": "./bin/index.js"
   },
   "dependencies": {
+    "axios": "^0.26.1",
     "boxen": "4.0",
     "chalk": "2.4",
+    "dotenv": "^16.0.0",
     "mixpanel": "^0.14.0",
     "yargs": "^17.3.1"
   }
